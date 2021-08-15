@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:pokelandia/app/views/SpecsPage/specs_page.dart';
 import 'package:pokelandia/app/views/commons/appBar_commons.dart';
+import 'package:pokelandia/app/views/service/service.dart';
 
 class PokemonPage extends StatefulWidget {
   @override
@@ -8,6 +12,13 @@ class PokemonPage extends StatefulWidget {
 
 class _PokemonPageState extends State<PokemonPage> {
   AppBarCommons appBarCommons = AppBarCommons();
+  CheckinApi service = CheckinApi();
+
+  @override
+  // void initState() {
+  //   service.getPokemon();
+  // }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -82,117 +93,135 @@ class _PokemonPageState extends State<PokemonPage> {
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    spacing: size.width * 0.03,
+                    runSpacing: size.width * 0.06,
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: size.width * 0.43,
-                            height: size.height * 0.15,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
+                          Hero(
+                            tag: 'specs',
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                                  return SpecsPage();
+                                }));
+                              },
+                              child: Container(
+                                width: size.width * 0.43,
+                                height: size.height * 0.15,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        topRight:
+                                            Radius.circular(size.width * 0.04),
+                                        topLeft:
+                                            Radius.circular(size.width * 0.04),
+                                        bottomLeft:
+                                            Radius.circular(size.width * 0.08),
+                                        bottomRight:
+                                            Radius.circular(size.width * 0.08)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0xff686565),
+                                        spreadRadius: 0.01,
+                                        blurRadius: 4,
+                                        offset: Offset(0, 0),
+                                      ),
+                                    ],
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/logo.png"),
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          Hero(
+                            tag: 'ability',
+                            child: Container(
+                              width: size.width * 0.32,
+                              height: size.height * 0.08,
+                              decoration: BoxDecoration(
+                                color: Color(0xffFAF4F4),
                                 borderRadius: BorderRadius.only(
-                                    topRight:
-                                        Radius.circular(size.width * 0.04),
-                                    topLeft: Radius.circular(size.width * 0.04),
                                     bottomLeft:
-                                        Radius.circular(size.width * 0.08),
+                                        Radius.circular(size.width * 0.03),
                                     bottomRight:
-                                        Radius.circular(size.width * 0.08)),
+                                        Radius.circular(size.width * 0.03)),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color(0xff686565),
                                     spreadRadius: 0.01,
                                     blurRadius: 4,
-                                    offset: Offset(0, 0),
+                                    offset: Offset(0, 1),
                                   ),
                                 ],
-                                image: DecorationImage(
-                                  image: AssetImage("assets/logo.png"),
-                                  fit: BoxFit.cover,
-                                )),
-                          ),
-                          Container(
-                            width: size.width * 0.32,
-                            height: size.height * 0.08,
-                            decoration: BoxDecoration(
-                              color: Color(0xffFAF4F4),
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft:
-                                      Radius.circular(size.width * 0.03),
-                                  bottomRight:
-                                      Radius.circular(size.width * 0.03)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff686565),
-                                  spreadRadius: 0.01,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 1),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Pikachu',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF686565),
-                                        fontSize: size.width * 0.04),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: size.width * 0.14,
-                                          height: size.height * 0.035,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.width * 1),
-                                              border: Border.all(
-                                                  color: Color(0xFF686565))),
-                                          child: Center(
-                                            child: Text(
-                                              'ability',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color(0xFF686565),
-                                                  fontSize: size.width * 0.03),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: size.width * 0.14,
-                                          height: size.height * 0.035,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.width * 1),
-                                              border: Border.all(
-                                                  color: Color(0xFF686565))),
-                                          child: Center(
-                                            child: Text(
-                                              'ability',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color(0xFF686565),
-                                                  fontSize: size.width * 0.03),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Pikachu',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF686565),
+                                          fontSize: size.width * 0.04),
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: size.width * 0.14,
+                                            height: size.height * 0.035,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        size.width * 1),
+                                                border: Border.all(
+                                                    color: Color(0xFF686565))),
+                                            child: Center(
+                                              child: Text(
+                                                'ability',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0xFF686565),
+                                                    fontSize:
+                                                        size.width * 0.03),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: size.width * 0.14,
+                                            height: size.height * 0.035,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        size.width * 1),
+                                                border: Border.all(
+                                                    color: Color(0xFF686565))),
+                                            child: Center(
+                                              child: Text(
+                                                'ability',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0xFF686565),
+                                                    fontSize:
+                                                        size.width * 0.03),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

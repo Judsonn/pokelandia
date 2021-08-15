@@ -15,7 +15,7 @@ class CheckinApi {
         receiveTimeout: 100000),
   );
 
-  Future<Response> getPokemon(String email) async {
+  Future<Response> getPokemon() async {
     try {
       Response response = await _checkinApi._dio.get('/pokemon');
       print('response: ${response.data}');
