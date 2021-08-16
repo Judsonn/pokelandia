@@ -4,7 +4,7 @@ import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pok
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_state.dart';
 import 'package:pokelandia/app/views/commons/appBar_commons.dart';
-import 'package:pokelandia/app/views/commons/drawer/drawer_commons.dart';
+import 'package:pokelandia/app/views/commons/drawer_commons.dart';
 
 class PokemonPage extends StatefulWidget {
   @override
@@ -62,7 +62,6 @@ class _PokemonPageState extends State<PokemonPage> {
                               fontSize: size.width * 0.05),
                         ),
                       ),
-
                       Expanded(
                         child: GridView.builder(
                             padding: EdgeInsets.only(top: 10),
@@ -215,8 +214,6 @@ class _PokemonPageState extends State<PokemonPage> {
                               );
                             }),
                       )
-                      //   ],
-                      // )
                     ],
                   ),
                 ),

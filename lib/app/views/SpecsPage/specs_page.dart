@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokelandia/app/models/pokemon_details_model.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/Pokemon_details_cubit.dart';
+import 'package:pokelandia/app/views/commons/pokemon_type.dart';
 
 class SpecsPage extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class _SpecsPageState extends State<SpecsPage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    PokemonType _pokemonType = PokemonType();
     return Scaffold(
         backgroundColor: Colors.white,
         body: BlocBuilder<PokemonDetailsCubit, PokemonDetails>(
@@ -150,7 +152,8 @@ class _SpecsPageState extends State<SpecsPage> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: details.types
-                                        .map((type) => _pokemonTypeView(type))
+                                        .map((type) =>
+                                            _pokemonType.pokemonTypeView(type))
                                         .toList(),
                                   ),
                                 ],
@@ -166,82 +169,5 @@ class _SpecsPageState extends State<SpecsPage> {
                   child: CircularProgressIndicator(),
                 );
         }));
-  }
-
-  Widget _pokemonTypeView(String type) {
-    Color color;
-
-    switch (type) {
-      case 'normal':
-        color = Color(0xFFbdbeb0);
-        break;
-      case 'poison':
-        color = Color(0xFF995E98);
-        break;
-      case 'psychic':
-        color = Color(0xFFE96EB0);
-        break;
-      case 'grass':
-        color = Color(0xFF9CD363);
-        break;
-      case 'ground':
-        color = Color(0xFFE3C969);
-        break;
-      case 'ice':
-        color = Color(0xFFAFF4FD);
-        break;
-      case 'fire':
-        color = Color(0xFFE7614D);
-        break;
-      case 'rock':
-        color = Color(0xFFCBBD7C);
-        break;
-      case 'dragon':
-        color = Color(0xFF8475F7);
-        break;
-      case 'water':
-        color = Color(0xFF6DACF8);
-        break;
-      case 'bug':
-        color = Color(0xFFC5D24A);
-        break;
-      case 'dark':
-        color = Color(0xFF886958);
-        break;
-      case 'fighting':
-        color = Color(0xFF9E5A4A);
-        break;
-      case 'ghost':
-        color = Color(0xFF7774CF);
-        break;
-      case 'steel':
-        color = Color(0xFFC3C3D9);
-        break;
-      case 'flying':
-        color = Color(0xFF81A2F8);
-        break;
-      case 'normal':
-        color = Color(0xFFF9E65E);
-        break;
-      case 'fairy':
-        color = Color(0xFFEEB0FA);
-        break;
-      default:
-        color = Colors.black;
-        break;
-    }
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.all(Radius.circular(8))),
-        child: Text(
-          type.toUpperCase(),
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
   }
 }
