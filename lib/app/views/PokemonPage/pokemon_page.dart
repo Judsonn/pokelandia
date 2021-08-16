@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:pokelandia/app/views/SpecsPage/specs_page.dart';
 import 'package:pokelandia/app/views/commons/appBar_commons.dart';
-import 'package:pokelandia/app/views/service/service.dart';
+import 'package:pokelandia/app/views/commons/drawer/drawer_commons.dart';
 
 class PokemonPage extends StatefulWidget {
   @override
@@ -11,9 +9,6 @@ class PokemonPage extends StatefulWidget {
 }
 
 class _PokemonPageState extends State<PokemonPage> {
-  AppBarCommons appBarCommons = AppBarCommons();
-  CheckinApi service = CheckinApi();
-
   @override
   // void initState() {
   //   service.getPokemon();
@@ -23,39 +18,12 @@ class _PokemonPageState extends State<PokemonPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: Container(),
-        actions: <Widget>[
-          Container(
-            width: size.width * 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(Icons.list,
-                    color: Color(0xFF686565), size: size.width * 0.08),
-                Hero(
-                  tag: 'pokelandia',
-                  child: Text(
-                    'Pokelândia',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF686565),
-                        fontSize: size.width * 0.05),
-                  ),
-                ),
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('assets/logo.png'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      drawer: DrawerCommons(),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100),
+          child: AppBarCommons(
+            iconData: Icons.list,
+          )),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
