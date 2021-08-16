@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:pokelandia/views/root/root.dart';
+import 'package:pokelandia/app/views/Root/root.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
