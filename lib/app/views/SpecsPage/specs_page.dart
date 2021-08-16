@@ -25,7 +25,6 @@ class _SpecsPageState extends State<SpecsPage> {
                       Hero(
                         tag: 'apecs',
                         child: Container(
-                          // color: Colors.red,
                           height: size.height * 0.45,
                           width: double.maxFinite,
                           child: Stack(
@@ -38,7 +37,6 @@ class _SpecsPageState extends State<SpecsPage> {
                                 ),
                                 child: Column(
                                   children: <Widget>[
-                                    Image.network(details.imageUrl),
                                     Container(
                                       width: size.width * 1,
                                       height: size.height * 0.05,
@@ -60,6 +58,7 @@ class _SpecsPageState extends State<SpecsPage> {
                                         ],
                                       ),
                                     ),
+                                    Image.network(details.imageUrl),
                                   ],
                                 ),
                               )
@@ -94,11 +93,65 @@ class _SpecsPageState extends State<SpecsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Pikachu',
+                                    details.name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFF686565),
                                         fontSize: size.width * 0.07),
+                                  ),
+                                  Container(
+                                    // color: Colors.red,
+                                    width: size.width * 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, bottom: 20),
+                                      child: Text(
+                                        details.description,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            color: Color(0xFF686565),
+                                            fontSize: size.width * 0.04),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    'ID: ${details.id}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF686565),
+                                        fontSize: size.width * 0.04),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    'Weight: ${details.weight}',
+                                    style: TextStyle(
+                                        color: Color(0xFF686565),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: size.width * 0.04),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.01,
+                                  ),
+                                  Text(
+                                    ' Height: ${details.height}',
+                                    style: TextStyle(
+                                        color: Color(0xFF686565),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: size.width * 0.04),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.03,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: details.types
+                                        .map((type) => _pokemonTypeView(type))
+                                        .toList(),
                                   ),
                                 ],
                               ),
@@ -114,142 +167,81 @@ class _SpecsPageState extends State<SpecsPage> {
                 );
         }));
   }
-}
 
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:pokelandia/app/models/pokemon_details_model.dart';
-// import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/Pokemon_details_cubit.dart';
+  Widget _pokemonTypeView(String type) {
+    Color color;
 
-// class PokemonDetailsView extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Details'),
-//       ),
-//       backgroundColor: Color(0xFFF2F2F2),
-//       body: BlocBuilder<PokemonDetailsCubit, PokemonDetails>(
-//         builder: (context, details) {
-//           return details != null
-//               ? Center(
-//                   child: Column(
-//                   children: [
-//                     Expanded(
-//                         flex: 1,
-//                         child: Card(
-//                           child: Column(
-//                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                             children: [
-//                               Image.network(details.imageUrl),
-//                               Text(details.name),
-//                               Row(
-//                                 mainAxisAlignment: MainAxisAlignment.center,
-//                                 children: details.types
-//                                     .map((type) => _pokemonTypeView(type))
-//                                     .toList(),
-//                               ),
-//                               Text(
-//                                   'ID: ${details.id}  -  Weight: ${details.weight}  -  Height: ${details.height}')
-//                             ],
-//                           ),
-//                         )),
-//                     Expanded(
-//                         flex: 2,
-//                         child: SizedBox(
-//                           width: double.infinity,
-//                           child: Card(
-//                             child: Padding(
-//                               padding: EdgeInsets.all(8),
-//                               child: Text(
-//                                 details.description,
-//                                 textAlign: TextAlign.center,
-//                               ),
-//                             ),
-//                           ),
-//                         ))
-//                   ],
-//                 ))
-//               : Center(
-//                   child: CircularProgressIndicator(),
-//                 );
-//         },
-//       ),
-//     );
-//   }
+    switch (type) {
+      case 'normal':
+        color = Color(0xFFbdbeb0);
+        break;
+      case 'poison':
+        color = Color(0xFF995E98);
+        break;
+      case 'psychic':
+        color = Color(0xFFE96EB0);
+        break;
+      case 'grass':
+        color = Color(0xFF9CD363);
+        break;
+      case 'ground':
+        color = Color(0xFFE3C969);
+        break;
+      case 'ice':
+        color = Color(0xFFAFF4FD);
+        break;
+      case 'fire':
+        color = Color(0xFFE7614D);
+        break;
+      case 'rock':
+        color = Color(0xFFCBBD7C);
+        break;
+      case 'dragon':
+        color = Color(0xFF8475F7);
+        break;
+      case 'water':
+        color = Color(0xFF6DACF8);
+        break;
+      case 'bug':
+        color = Color(0xFFC5D24A);
+        break;
+      case 'dark':
+        color = Color(0xFF886958);
+        break;
+      case 'fighting':
+        color = Color(0xFF9E5A4A);
+        break;
+      case 'ghost':
+        color = Color(0xFF7774CF);
+        break;
+      case 'steel':
+        color = Color(0xFFC3C3D9);
+        break;
+      case 'flying':
+        color = Color(0xFF81A2F8);
+        break;
+      case 'normal':
+        color = Color(0xFFF9E65E);
+        break;
+      case 'fairy':
+        color = Color(0xFFEEB0FA);
+        break;
+      default:
+        color = Colors.black;
+        break;
+    }
 
-Widget _pokemonTypeView(String type) {
-  Color color;
-
-  switch (type) {
-    case 'normal':
-      color = Color(0xFFbdbeb0);
-      break;
-    case 'poison':
-      color = Color(0xFF995E98);
-      break;
-    case 'psychic':
-      color = Color(0xFFE96EB0);
-      break;
-    case 'grass':
-      color = Color(0xFF9CD363);
-      break;
-    case 'ground':
-      color = Color(0xFFE3C969);
-      break;
-    case 'ice':
-      color = Color(0xFFAFF4FD);
-      break;
-    case 'fire':
-      color = Color(0xFFE7614D);
-      break;
-    case 'rock':
-      color = Color(0xFFCBBD7C);
-      break;
-    case 'dragon':
-      color = Color(0xFF8475F7);
-      break;
-    case 'water':
-      color = Color(0xFF6DACF8);
-      break;
-    case 'bug':
-      color = Color(0xFFC5D24A);
-      break;
-    case 'dark':
-      color = Color(0xFF886958);
-      break;
-    case 'fighting':
-      color = Color(0xFF9E5A4A);
-      break;
-    case 'ghost':
-      color = Color(0xFF7774CF);
-      break;
-    case 'steel':
-      color = Color(0xFFC3C3D9);
-      break;
-    case 'flying':
-      color = Color(0xFF81A2F8);
-      break;
-    case 'normal':
-      color = Color(0xFFF9E65E);
-      break;
-    case 'fairy':
-      color = Color(0xFFEEB0FA);
-      break;
-    default:
-      color = Colors.black;
-      break;
-  }
-
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 4),
-    child: Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.all(Radius.circular(8))),
-      child: Text(
-        type.toUpperCase(),
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            color: color, borderRadius: BorderRadius.all(Radius.circular(8))),
+        child: Text(
+          type.toUpperCase(),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
