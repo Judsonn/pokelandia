@@ -18,7 +18,7 @@
 
 ## 📱 Screenshot
 <p align="center">
-  <img alt="Pokelândia - Screenshots" src="assets/screenshot.png" width="60%">
+  <img alt="Pokelândia - Screenshots" src="assets/screenshot.png" width="100%">
 </p>
 
 <br>
