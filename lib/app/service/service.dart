@@ -1,27 +1,50 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
 
-class CheckinApi {
-  static final CheckinApi _checkinApi = CheckinApi._internal();
-  CheckinApi._internal();
+import 'package:http/http.dart' as http;
+import 'package:pokelandia/app/models/pokemon_info_model.dart';
+import 'package:pokelandia/app/models/pokemon_model.dart';
+import 'package:pokelandia/app/models/pokemon_species_model.dart';
 
-  factory CheckinApi() {
-    return _checkinApi;
+class PokemonRepository {
+  final baseUrl = 'pokeapi.co';
+  final client = http.Client();
+
+  Future<PokemonPageResponse> getPokemonPage(int pageIndex) async {
+    final queryParameters = {
+      'limit': '200',
+      'offset': (pageIndex * 200).toString()
+    };
+
+    final uri = Uri.https(baseUrl, '/api/v2/pokemon', queryParameters);
+
+    final response = await client.get(uri);
+    final json = jsonDecode(response.body);
+
+    return PokemonPageResponse.fromJson(json);
   }
 
-  final Dio _dio = Dio(
-    BaseOptions(
-        baseUrl: 'https://pokeapi.co/api/v2/',
-        connectTimeout: 100000,
-        receiveTimeout: 100000),
-  );
+  Future<PokemonInfoResponse> getPokemonInfo(int pokemonId) async {
+    final uri = Uri.https(baseUrl, '/api/v2/pokemon/$pokemonId');
 
-  Future<Response> getPokemon() async {
     try {
-      Response response = await _checkinApi._dio.get('/pokemon');
-      print('response: ${response.data}');
-      return response;
+      final response = await client.get(uri);
+      final json = jsonDecode(response.body);
+      return PokemonInfoResponse.fromJson(json);
     } catch (e) {
-      return null;
+      print(e);
+    }
+  }
+
+  Future<PokemonSpeciesInfoResponse> getPokemonSpeciesInfo(
+      int pokemonId) async {
+    final uri = Uri.https(baseUrl, '/api/v2/pokemon-species/$pokemonId');
+
+    try {
+      final response = await client.get(uri);
+      final json = jsonDecode(response.body);
+      return PokemonSpeciesInfoResponse.fromJson(json);
+    } catch (e) {
+      print(e);
     }
   }
 }
