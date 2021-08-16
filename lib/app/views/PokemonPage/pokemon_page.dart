@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pokemon.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_state.dart';
-import 'package:pokelandia/app/views/SpecsPage/specs_page.dart';
 import 'package:pokelandia/app/views/commons/appBar_commons.dart';
 import 'package:pokelandia/app/views/commons/drawer/drawer_commons.dart';
 
@@ -64,10 +63,6 @@ class _PokemonPageState extends State<PokemonPage> {
                         ),
                       ),
 
-                      // Wrap(
-                      //   spacing: size.width * 0.03,
-                      //   runSpacing: size.width * 0.06,
-                      //   children: [
                       Expanded(
                         child: GridView.builder(
                             padding: EdgeInsets.only(top: 10),
@@ -82,12 +77,6 @@ class _PokemonPageState extends State<PokemonPage> {
                                     tag: 'specs',
                                     child: GestureDetector(
                                       onTap: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             PokemonDetailsView()));
-
                                         BlocProvider.of<PokemonCubit>(context)
                                             .showPokemonDetails(state
                                                 .pokemonListings[index].id);
@@ -114,11 +103,6 @@ class _PokemonPageState extends State<PokemonPage> {
                                                 offset: Offset(0, 0),
                                               ),
                                             ],
-                                            // image: DecorationImage(
-                                            //   image:
-                                            //       AssetImage("assets/logo.png"),
-                                            //   fit: BoxFit.cover,
-                                            // )
                                           ),
                                           child: Image.network(
                                             state.pokemonListings[index]
@@ -250,47 +234,3 @@ class _PokemonPageState extends State<PokemonPage> {
     );
   }
 }
-
-// class PokemonPaage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Pokedex'),
-//       ),
-//       body: BlocBuilder<PokemonBloc, PokemonState>(
-//         builder: (context, state) {
-//           if (state is PokemonLoadInProgress) {
-//             return Center(
-//               child: CircularProgressIndicator(),
-//             );
-//           } else if (state is PokemonPageLoadSuccess) {
-//             return GridView.builder(
-//               gridDelegate:
-//                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-//               itemCount: state.pokemonListings.length,
-//               itemBuilder: (context, index) {
-//                 return Card(
-//                   child: GridTile(
-//                     child: Column(
-//                       children: [
-//                         Image.network(state.pokemonListings[index].imageUrl),
-//                         Text(state.pokemonListings[index].name)
-//                       ],
-//                     ),
-//                   ),
-//                 );
-//               },
-//             );
-//           } else if (state is PokemonPageLoadFailed) {
-//             return Center(
-//               child: Text(state.error.toString()),
-//             );
-//           } else {
-//             return Container();
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }

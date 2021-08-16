@@ -1,6 +1,5 @@
-// import 'package:day16_pokedex_app/pokedex_view.dart';
-// import 'package:day16_pokedex_app/pokemon_details_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pokemon.dart';
 import 'package:pokelandia/app/views/PokemonPage/pokemon_page.dart';

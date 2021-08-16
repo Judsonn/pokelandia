@@ -4,27 +4,8 @@ import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/Pokemon_det
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pokemon.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_event.dart';
-import 'package:pokelandia/app/views/PokemonPage/pokemon_page.dart';
 
 import 'package:pokelandia/app/views/SplashPage/splash_page.dart';
-
-// class RootApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         primaryColor: Colors.white,
-//         accentColor: Color(0xff686565),
-//       ),
-//       home: MultiBlocProvider(providers: [
-//         BlocProvider(
-//             create: (context) =>
-//                 PokemonBloc()..add(PokemonPageRequest(page: 0)))
-//       ], child: SplashPage()),
-//     );
-//   }
-// }
 
 class RootApp extends StatelessWidget {
   @override
