@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokelandia/app/models/pokemon_details_model.dart';
+import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/Pokemon_details_cubit.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pokemon.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_state.dart';
 import 'package:pokelandia/app/views/commons/appBar_commons.dart';
-import 'package:pokelandia/app/views/commons/drawer/drawer_commons.dart';
+import 'package:pokelandia/app/views/commons/drawer_commons.dart';
 
 class PokemonPage extends StatefulWidget {
   @override
@@ -62,7 +64,6 @@ class _PokemonPageState extends State<PokemonPage> {
                               fontSize: size.width * 0.05),
                         ),
                       ),
-
                       Expanded(
                         child: GridView.builder(
                             padding: EdgeInsets.only(top: 10),
@@ -82,19 +83,12 @@ class _PokemonPageState extends State<PokemonPage> {
                                                 .pokemonListings[index].id);
                                       },
                                       child: Container(
-                                          width: size.width * 0.4,
+                                          width: size.width * 0.42,
                                           height: size.height * 0.12,
                                           decoration: BoxDecoration(
                                             color: Colors.white,
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(
-                                                    size.width * 0.04),
-                                                topLeft: Radius.circular(
-                                                    size.width * 0.04),
-                                                bottomLeft: Radius.circular(
-                                                    size.width * 0.08),
-                                                bottomRight: Radius.circular(
-                                                    size.width * 0.08)),
+                                            borderRadius:
+                                                BorderRadius.circular(30),
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Color(0xff686565),
@@ -114,14 +108,18 @@ class _PokemonPageState extends State<PokemonPage> {
                                     tag: 'ability',
                                     child: Container(
                                       width: size.width * 0.32,
-                                      height: size.height * 0.08,
+                                      height: size.height * 0.05,
                                       decoration: BoxDecoration(
                                         color: Color(0xffFAF4F4),
                                         borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                                size.width * 0.01),
+                                            topRight: Radius.circular(
+                                                size.width * 0.01),
                                             bottomLeft: Radius.circular(
-                                                size.width * 0.03),
+                                                size.width * 0.05),
                                             bottomRight: Radius.circular(
-                                                size.width * 0.03)),
+                                                size.width * 0.05)),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Color(0xff686565),
@@ -140,71 +138,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Color(0xFF686565),
-                                                  fontSize: size.width * 0.04),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(5),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  Container(
-                                                    width: size.width * 0.14,
-                                                    height: size.height * 0.035,
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    size.width *
-                                                                        1),
-                                                        border: Border.all(
-                                                            color: Color(
-                                                                0xFF686565))),
-                                                    child: Center(
-                                                      child: Text(
-                                                        'ability',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Color(
-                                                                0xFF686565),
-                                                            fontSize:
-                                                                size.width *
-                                                                    0.03),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: size.width * 0.14,
-                                                    height: size.height * 0.035,
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    size.width *
-                                                                        1),
-                                                        border: Border.all(
-                                                            color: Color(
-                                                                0xFF686565))),
-                                                    child: Center(
-                                                      child: Text(
-                                                        'ability',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Color(
-                                                                0xFF686565),
-                                                            fontSize:
-                                                                size.width *
-                                                                    0.03),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                  fontSize: size.width * 0.043),
                                             ),
                                           ],
                                         ),
@@ -215,8 +149,6 @@ class _PokemonPageState extends State<PokemonPage> {
                               );
                             }),
                       )
-                      //   ],
-                      // )
                     ],
                   ),
                 ),
