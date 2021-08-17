@@ -69,7 +69,7 @@ class PokemonType {
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.all(Radius.circular(8))),
+            color: color, borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Text(
           type.toUpperCase(),
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

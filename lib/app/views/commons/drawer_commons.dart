@@ -42,9 +42,8 @@ class DrawerCommons extends StatelessWidget {
         ),
       ]),
       body: Container(
-        color: Colors.red,
         child: Padding(
-          padding: const EdgeInsets.only(top: 40),
+          padding: const EdgeInsets.only(top: 40, left: 40),
           child: Column(
             children: [
               Row(
@@ -57,7 +56,7 @@ class DrawerCommons extends StatelessWidget {
                   Text(
                     'Favorite Pokemon',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
                         color: Color(0xFF686565),
                         fontSize: size.width * 0.05),
                   ),

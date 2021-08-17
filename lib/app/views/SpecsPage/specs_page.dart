@@ -10,9 +10,12 @@ class SpecsPage extends StatefulWidget {
 }
 
 class _SpecsPageState extends State<SpecsPage> {
+  bool _favoritDisable = false;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     PokemonType _pokemonType = PokemonType();
     return Scaffold(
         backgroundColor: Colors.white,
@@ -54,9 +57,20 @@ class _SpecsPageState extends State<SpecsPage> {
                                                 color: Color(0xFF686565),
                                                 size: size.width * 0.08),
                                           ),
-                                          Icon(Icons.favorite,
-                                              color: Color(0xFF686565),
-                                              size: size.width * 0.08),
+                                          GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  _favoritDisable =
+                                                      !_favoritDisable;
+                                                });
+                                              },
+                                              child: _favoritDisable
+                                                  ? Icon(Icons.favorite,
+                                                      color: Color(0xFF686565),
+                                                      size: size.width * 0.08)
+                                                  : Icon(Icons.favorite_border,
+                                                      color: Color(0xFF686565),
+                                                      size: size.width * 0.08)),
                                         ],
                                       ),
                                     ),
@@ -90,72 +104,122 @@ class _SpecsPageState extends State<SpecsPage> {
                                   ),
                                 ]),
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 20),
+                              padding: const EdgeInsets.only(
+                                  top: 15, left: 20, right: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    details.name,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF686565),
-                                        fontSize: size.width * 0.07),
-                                  ),
-                                  Container(
-                                    // color: Colors.red,
-                                    width: size.width * 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, bottom: 20),
-                                      child: Text(
-                                        details.description,
-                                        textAlign: TextAlign.left,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        details.name,
                                         style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             color: Color(0xFF686565),
-                                            fontSize: size.width * 0.04),
+                                            fontSize: size.width * 0.07),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Text(
-                                    'ID: ${details.id}',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF686565),
-                                        fontSize: size.width * 0.04),
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Text(
-                                    'Weight: ${details.weight}',
-                                    style: TextStyle(
-                                        color: Color(0xFF686565),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: size.width * 0.04),
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Text(
-                                    ' Height: ${details.height}',
-                                    style: TextStyle(
-                                        color: Color(0xFF686565),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: size.width * 0.04),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: details.types
+                                            .map((type) => _pokemonType
+                                                .pokemonTypeView(type))
+                                            .toList(),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(
                                     height: size.height * 0.03,
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: details.types
-                                        .map((type) =>
-                                            _pokemonType.pokemonTypeView(type))
-                                        .toList(),
+                                  Container(
+                                    // color: Colors.red,
+                                    width: size.width * 1,
+                                    child: Text(
+                                      details.description,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          color: Color(0xFF686565),
+                                          fontSize: size.width * 0.04),
+                                    ),
                                   ),
+                                  SizedBox(
+                                    height: size.height * 0.02,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        width: size.width * 0.18,
+                                        height: size.height * 0.04,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Center(
+                                          child: Text(
+                                            'ID: ${details.id}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF686565),
+                                                fontSize: size.width * 0.04),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.01,
+                                      ),
+                                      Container(
+                                        width: size.width * 0.3,
+                                        height: size.height * 0.04,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Center(
+                                          child: Text(
+                                            'Weight: ${details.weight}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF686565),
+                                                fontSize: size.width * 0.04),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.01,
+                                      ),
+                                      Container(
+                                        width: size.width * 0.3,
+                                        height: size.height * 0.04,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Center(
+                                          child: Text(
+                                            ' Height: ${details.height}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF686565),
+                                                fontSize: size.width * 0.04),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: size.height * 0.03,
+                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: details.types
+                                  //       .map((type) =>
+                                  //           _pokemonType.pokemonTypeView(type))
+                                  //       .toList(),
+                                  // ),
                                 ],
                               ),
                             ),
