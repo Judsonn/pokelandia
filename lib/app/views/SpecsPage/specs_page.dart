@@ -109,43 +109,46 @@ class _SpecsPageState extends State<SpecsPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        details.name,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF686565),
-                                            fontSize: size.width * 0.07),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: details.types
-                                            .map((type) => _pokemonType
-                                                .pokemonTypeView(type))
-                                            .toList(),
-                                      ),
-                                    ],
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  Text(
+                                    details.name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF686565),
+                                        fontSize: size.width * 0.07),
                                   ),
                                   SizedBox(
                                     height: size.height * 0.03,
                                   ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: details.types
+                                        .map((type) =>
+                                            _pokemonType.pokemonTypeView(type))
+                                        .toList(),
+                                  ),
+                                  // ],
+                                  // ),
+                                  SizedBox(
+                                    height: size.height * 0.03,
+                                  ),
                                   Container(
-                                    // color: Colors.red,
                                     width: size.width * 1,
+                                    alignment: Alignment.center,
                                     child: Text(
-                                      details.description,
-                                      textAlign: TextAlign.left,
+                                      details.description.replaceAll('\n', ' '),
+                                      textAlign: TextAlign.justify,
                                       style: TextStyle(
                                           color: Color(0xFF686565),
+                                          fontWeight: FontWeight.w400,
                                           fontSize: size.width * 0.04),
                                     ),
                                   ),
                                   SizedBox(
-                                    height: size.height * 0.02,
+                                    height: size.height * 0.03,
                                   ),
                                   Row(
                                     mainAxisAlignment:
