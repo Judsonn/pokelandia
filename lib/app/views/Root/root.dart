@@ -4,8 +4,7 @@ import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/Pokemon_det
 import 'package:pokelandia/app/views/PokemonPage/Bloc/PokemonDetails/details_pokemon.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_bloc.dart';
 import 'package:pokelandia/app/views/PokemonPage/Bloc/pokemon_page_event.dart';
-
-import 'package:pokelandia/app/views/SplashPage/splash_page.dart';
+import 'package:pokelandia/app/views/SplashPage/app_navigator.dart';
 
 class RootApp extends StatelessWidget {
   @override
