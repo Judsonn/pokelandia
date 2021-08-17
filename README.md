@@ -16,7 +16,7 @@
 
 <br>
 
-## 📱 Screenshot
+## 📱 Prototype
 <p align="center">
   <img alt="Pokelândia - Screenshots" src="assets/screenshot.png" width="100%">
 </p>
@@ -32,6 +32,8 @@ This project was developed with the following technologies and libraries:
 - [Flutter](https://flutter.dev/)
 - [Bloc](https://pub.dev/packages/bloc)
 - [Http Connection](https://pub.dev/packages/http)
+- [Shared Preferences](https://pub.dev/packages/shared_preferences)
+
 
 
 
@@ -44,7 +46,6 @@ This project aims to meet some requirements to test the knowledge level of the m
 ## 🤔 How to contribute?
 
 - Fork the repository;
-- 
 - Create a branch named after your improvement/fix: `git checkout -b feature/your_feature_name`;
 - Commit your changes: `git commit -m 'feat: My new feature'`;
 - Push your branch: `git push origin feature/your_feature_name`.
